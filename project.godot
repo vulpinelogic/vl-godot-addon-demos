@@ -1,0 +1,40 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="VulpineLogic Demos"
+run/main_scene="uid://ump1pi2wl8hd"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+run/low_processor_mode=true
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=3840
+window/size/viewport_height=2160
+window/size/initial_position_type=3
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/vulpinelogic_obs_websocket/plugin.cfg")
+
+[gui]
+
+theme/default_theme_scale=2.0
+theme/default_font_multichannel_signed_distance_field=true
+theme/default_font_generate_mipmaps=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

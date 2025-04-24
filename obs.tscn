@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://8lvy4limfiah"]
+
+[ext_resource type="Script" uid="uid://cpc6fbawcy6ec" path="res://obs.gd" id="1_jlm6r"]
+[ext_resource type="Script" uid="uid://bkgctlntxajej" path="res://addons/vulpinelogic_obs_websocket/websocket/obs_websocket.gd" id="2_wkrjc"]
+
+[node name="OBS" type="MarginContainer"]
+script = ExtResource("1_jlm6r")
+metadata/_tab_index = 0
+
+[node name="VulpineLogicOBSWebSocket" type="Node" parent="."]
+script = ExtResource("2_wkrjc")
+metadata/_custom_type_script = "uid://bkgctlntxajej"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SettingsGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="URILabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "URI"
+vertical_alignment = 1
+
+[node name="URILineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "ws://127.0.0.0:4455"
+
+[node name="PasswordLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Password"
+vertical_alignment = 1
+
+[node name="PasswordLineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid"]
+layout_mode = 2
+secret = true
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Connection Status"
+vertical_alignment = 1
+
+[node name="StatusLineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Unknown"
+editable = false
+flat = true
+
+[node name="ButtonGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+columns = 3
+
+[node name="ListScenesButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "List Scenes"
+
+[node name="ListInputsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/ButtonGrid"]
+layout_mode = 2
+text = "List Inputs"
+
+[node name="Console" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Output" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Console"]
+layout_mode = 2
+scroll_following = true
+
+[connection signal="closed" from="VulpineLogicOBSWebSocket" to="." method="_on_vulpine_logic_obs_web_socket_closed"]
+[connection signal="connected" from="VulpineLogicOBSWebSocket" to="." method="_on_vulpine_logic_obs_web_socket_connected"]
+[connection signal="current_program_scene_changed" from="VulpineLogicOBSWebSocket" to="." method="_on_vulpine_logic_obs_web_socket_current_program_scene_changed"]
+[connection signal="exit_started" from="VulpineLogicOBSWebSocket" to="." method="_on_vulpine_logic_obs_web_socket_exit_started"]
+[connection signal="identified" from="VulpineLogicOBSWebSocket" to="." method="_on_vulpine_logic_obs_web_socket_identified"]
+[connection signal="text_submitted" from="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid/URILineEdit" to="." method="_on_uri_line_edit_text_submitted"]
+[connection signal="text_submitted" from="MarginContainer/HBoxContainer/VBoxContainer/SettingsGrid/PasswordLineEdit" to="." method="_on_password_line_edit_text_submitted"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ButtonGrid/ListScenesButton" to="." method="_on_list_scenes_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ButtonGrid/ListInputsButton" to="." method="_on_list_inputs_button_pressed"]

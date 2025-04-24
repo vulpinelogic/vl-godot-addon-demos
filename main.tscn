@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://ump1pi2wl8hd"]
+
+[ext_resource type="PackedScene" uid="uid://8lvy4limfiah" path="res://obs.tscn" id="2_0xm2m"]
+
+[sub_resource type="Theme" id="Theme_ig7tw"]
+GridContainer/constants/h_separation = 16
+GridContainer/constants/v_separation = 8
+MarginContainer/constants/margin_bottom = 16
+MarginContainer/constants/margin_left = 16
+MarginContainer/constants/margin_right = 16
+MarginContainer/constants/margin_top = 16
+
+[node name="Node" type="Node"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ig7tw")
+
+[node name="TabContainer" type="TabContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="OBS" parent="UI/TabContainer" instance=ExtResource("2_0xm2m")]
+layout_mode = 2
